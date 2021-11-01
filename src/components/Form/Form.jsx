@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addContact } from "../../redux/contacts/contacts-action.js";
+import { addNewContact } from "../../redux/contacts/contacts-operations";
 import {getContacts} from "../../redux/contacts/contacts-selectors";
 import { useSelector, useDispatch } from "react-redux";
 import {ContactForm, Button, Label, Input} from './Form.styled.js';
@@ -13,6 +13,7 @@ const [number, setNumber] = useState('');
 
 const handleInputName = (e) => {
     const {name, value} = e.currentTarget;
+
     switch(name) {
         case 'name':
             return setName(value);
@@ -34,7 +35,10 @@ const handleSubmit = (e) => {
         return;
     };
 
-    dispatch(addContact(name, number))
+    console.log(name)
+    console.log(number)
+
+    dispatch(addNewContact({name, number}))
     reset();
 };
 
