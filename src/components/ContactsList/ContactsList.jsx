@@ -7,19 +7,18 @@ import {ListOfContacts, ListItem, Button} from './ContactList.styled';
 export default function ContactsList () {    
     const contacts = useSelector(getFilteredContacts);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         dispatch(fetchAllContacts());
     }, [dispatch]);
 
-    console.log(contacts)
-
+    const deleteOnClick = (id) => dispatch(deleteOneContact(id));
 
     return(
     <ListOfContacts>
-        {contacts.map(({ name, number}) => {
-        return (<ListItem key={name}><span>{name}: {number}</span>
-        <Button type="button" onClick={() => dispatch(deleteOneContact(name))}
+        {contacts.map(({id, name, number}) => {
+        return (<ListItem key={id}><span>{name}: {number}</span>
+        <Button type="button" onClick={() => deleteOnClick(id)}
         >Delete</Button>
         </ListItem>)})}
     </ListOfContacts>        

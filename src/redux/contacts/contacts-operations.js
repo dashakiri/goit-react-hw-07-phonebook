@@ -16,7 +16,7 @@ export const fetchAllContacts = createAsyncThunk(
 export const addNewContact = createAsyncThunk(
   'contacts/addContacts',
   async ({ name, number }) => {
-    const newContact = await addContacts(name, number);
+    const newContact = await addContacts({ name, number });
     return newContact;
   },
 );

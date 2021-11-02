@@ -13,16 +13,10 @@ const [number, setNumber] = useState('');
 
 const handleInputName = (e) => {
     const {name, value} = e.currentTarget;
-
-    switch(name) {
-        case 'name':
-            return setName(value);
-        case 'number':
-            return setNumber(value);
-        default:
-            return;
-    }
+    name === 'name' ? setName(value) : setNumber(value);
 };
+
+const onSubmit = (name,number) => dispatch(addNewContact({name, number}));
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +32,8 @@ const handleSubmit = (e) => {
     console.log(name)
     console.log(number)
 
-    dispatch(addNewContact({name, number}))
+    onSubmit(name, number);
+
     reset();
 };
 
